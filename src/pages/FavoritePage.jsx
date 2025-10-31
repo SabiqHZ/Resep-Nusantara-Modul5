@@ -1,80 +1,75 @@
 import { useState, useEffect } from "react";
 import RecipeGrid from "../components/makanan/RecipeGrid";
-import RecipeGridMinuman from "../components/minuman/RecipeGrid";
 
 export default function FavoritePage() {
-  const [favMakanan, setFavMakanan] = useState([]);
-  const [favMinuman, setFavMinuman] = useState([]);
+  const [favoritesMakanan, setFavoritesMakanan] = useState([]);
+  const [favoritesMinuman, setFavoritesMinuman] = useState([]);
 
-  // 🔄 Ambil data favorit makanan & minuman dari localStorage
+  // Ambil data dari localStorage
   useEffect(() => {
     const savedMakanan = localStorage.getItem("favorites_makanan");
     const savedMinuman = localStorage.getItem("favorites_minuman");
 
-    if (savedMakanan) setFavMakanan(JSON.parse(savedMakanan));
-    if (savedMinuman) setFavMinuman(JSON.parse(savedMinuman));
+    if (savedMakanan) setFavoritesMakanan(JSON.parse(savedMakanan));
+    if (savedMinuman) setFavoritesMinuman(JSON.parse(savedMinuman));
   }, []);
 
-  // ❤️ Fungsi toggle favorit makanan
-  const toggleFavMakanan = (recipe) => {
-    const updated = favMakanan.some((fav) => fav.id === recipe.id)
-      ? favMakanan.filter((fav) => fav.id !== recipe.id)
-      : [...favMakanan, recipe];
-
-    setFavMakanan(updated);
+  // Hapus dari favorit makanan
+  const toggleFavoriteMakanan = (recipe) => {
+    const updated = favoritesMakanan.filter((f) => f.id !== recipe.id);
+    setFavoritesMakanan(updated);
     localStorage.setItem("favorites_makanan", JSON.stringify(updated));
   };
 
-  // ❤️ Fungsi toggle favorit minuman
-  const toggleFavMinuman = (recipe) => {
-    const updated = favMinuman.some((fav) => fav.id === recipe.id)
-      ? favMinuman.filter((fav) => fav.id !== recipe.id)
-      : [...favMinuman, recipe];
-
-    setFavMinuman(updated);
+  // Hapus dari favorit minuman
+  const toggleFavoriteMinuman = (recipe) => {
+    const updated = favoritesMinuman.filter((f) => f.id !== recipe.id);
+    setFavoritesMinuman(updated);
     localStorage.setItem("favorites_minuman", JSON.stringify(updated));
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-red-50 pb-20 md:pb-8">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-indigo-50 pb-20 md:pb-8">
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
-        <h1 className="text-3xl font-bold text-slate-800 mb-6 text-center">
-          Resep Favoritmu ❤️
+        <h1 className="text-3xl font-bold mb-10 text-gray-800 text-center">
+          ❤️ Favorit Saya
         </h1>
-        <p className="text-center text-slate-500 mb-8 max-w-xl mx-auto">
-          Semua resep makanan dan minuman yang kamu tandai sebagai favorit akan
-          muncul di sini.
-        </p>
 
-        {/* Bagian Makanan */}
-        {favMakanan.length > 0 && (
-          <section className="mb-16">
+        {/* 🍛 Favorit Makanan */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+            🍛 Favorit Makanan
+          </h2>
+          {favoritesMakanan.length > 0 ? (
             <RecipeGrid
-              recipes={favMakanan}
-              favorites={favMakanan}
-              onToggleFavorite={toggleFavMakanan}
+              recipes={favoritesMakanan}
+              favorites={favoritesMakanan}
+              onToggleFavorite={toggleFavoriteMakanan}
             />
-          </section>
-        )}
-
-        {/* Bagian Minuman */}
-        {favMinuman.length > 0 && (
-          <section>
-            <RecipeGridMinuman recipes={favMinuman} favorites={favMinuman} />
-          </section>
-        )}
-
-        {/* Jika belum ada favorit */}
-        {favMakanan.length === 0 && favMinuman.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-slate-500 text-lg">
-              Belum ada resep yang kamu tandai favorit.
+          ) : (
+            <p className="text-gray-500 italic text-center">
+              Belum ada makanan favorit.
             </p>
-            <p className="text-slate-400 text-sm mt-2">
-              Kunjungi halaman Makanan atau Minuman untuk menambah favorit.
+          )}
+        </section>
+
+        {/* 🍹 Favorit Minuman */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+            🍹 Favorit Minuman
+          </h2>
+          {favoritesMinuman.length > 0 ? (
+            <RecipeGrid
+              recipes={favoritesMinuman}
+              favorites={favoritesMinuman}
+              onToggleFavorite={toggleFavoriteMinuman}
+            />
+          ) : (
+            <p className="text-gray-500 italic text-center">
+              Belum ada minuman favorit.
             </p>
-          </div>
-        )}
+          )}
+        </section>
       </main>
     </div>
   );

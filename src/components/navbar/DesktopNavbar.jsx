@@ -1,6 +1,7 @@
 // src/components/DesktopNavbar.jsx
 import { Plus } from "lucide-react";
 import logoUrl from "../../assets/LOGORN.png";
+import LazyImage from "../common/LazyImage";
 
 export default function DesktopNavbar({
   currentPage,
@@ -21,11 +22,12 @@ export default function DesktopNavbar({
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex items-center space-x-4">
-            <div className="relative group">
-              <img
+              <div className="relative group">
+              <LazyImage
                 src={logoUrl}
                 alt="Resep Nusantara Logo"
                 className="w-12 h-12 object-contain filter drop-shadow-md transform transition-transform duration-300 group-hover:scale-110"
+                eager
               />
               {/* Decorative particles */}
               <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping opacity-60" />

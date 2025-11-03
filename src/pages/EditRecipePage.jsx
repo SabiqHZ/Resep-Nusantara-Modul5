@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import recipeService from "../services/recipeService";
 import uploadService from "../services/uploadService";
+import LazyImage from "../components/common/LazyImage";
 
 export default function EditRecipePage({ recipeId, onBack, onSuccess }) {
   const [loading, setLoading] = useState(true);
@@ -370,7 +371,7 @@ useEffect(() => {
               {/* Show new image preview if selected */}
               {imagePreview ? (
                 <div className="relative">
-                  <img
+                  <LazyImage
                     src={imagePreview}
                     alt="Preview"
                     className="w-full h-64 object-cover rounded-xl"
@@ -389,7 +390,7 @@ useEffect(() => {
               ) : currentImageUrl && currentImageUrl.trim() !== "" ? (
                 /* Show current image */
                 <div className="relative">
-                  <img
+                  <LazyImage
                     src={currentImageUrl}
                     alt="Current"
                     className="w-full h-64 object-cover rounded-xl"

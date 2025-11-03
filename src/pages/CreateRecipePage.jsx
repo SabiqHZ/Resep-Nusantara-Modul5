@@ -22,6 +22,7 @@ import {
   formatDraftTime,
 } from "../utils/draftStorage";
 import ConfirmModal from "../components/modals/ConfirmModal";
+import LazyImage from "../components/common/LazyImage";
 
 export default function CreateRecipePage({ onBack, onSuccess }) {
   // Step state: 'upload' or 'form'
@@ -486,7 +487,7 @@ export default function CreateRecipePage({ onBack, onSuccess }) {
               ) : (
                 <div className="space-y-4">
                   <div className="relative">
-                    <img
+                    <LazyImage
                       src={imagePreview}
                       alt="Preview"
                       className="w-full h-80 object-cover rounded-xl shadow-lg"
@@ -529,7 +530,7 @@ export default function CreateRecipePage({ onBack, onSuccess }) {
               {/* Uploaded Image Preview */}
               <div className="bg-green-50 border border-green-200 rounded-xl p-4">
                 <div className="flex items-center gap-4">
-                  <img
+                  <LazyImage
                     src={uploadedImageUrl}
                     alt="Uploaded"
                     className="w-24 h-24 object-cover rounded-lg"

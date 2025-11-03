@@ -10,6 +10,7 @@ import {
   getStarRating,
 } from "../utils/helpers";
 import { Heart, Clock, Users, ChefHat } from "lucide-react";
+import LazyImage from "../components/common/LazyImage";
 
 export default function RecipeDetailPage({ recipeId, onBack }) {
   const {
@@ -116,7 +117,7 @@ export default function RecipeDetailPage({ recipeId, onBack }) {
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Recipe Image */}
         <div className="mb-8">
-          <img
+          <LazyImage
             src={recipe.image_url}
             alt={recipe.name}
             className="w-full h-96 object-cover rounded-2xl shadow-lg"

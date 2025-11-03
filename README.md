@@ -66,3 +66,32 @@ Pastikan laptop dan HP Anda terhubung ke jaringan Wi-Fi yang sama.
 Buka browser Chrome di HP Anda dan ketikkan alamat Network tadi.
 
 Aplikasi akan terbuka, dan Anda akan melihat opsi untuk menginstalnya
+
+## Optimasi Gambar (Lazy Load + Sequential Fetch)
+
+Aplikasi ini menggunakan komponen `LazyImage` (`src/components/common/LazyImage.jsx`) untuk mengoptimalkan pemuatan gambar:
+
+- Lazy load dengan IntersectionObserver dan atribut native `loading="lazy"`.
+- Antrian global dengan concurrency 1 sehingga gambar diunduh satu per satu (menghindari burst jaringan).
+- Dukungan gambar prioritas dengan prop `eager` untuk konten kritikal (mis. logo navbar), yang akan memuat segera dan melewati antrian.
+
+Contoh penggunaan:
+
+```jsx
+import LazyImage from "./components/common/LazyImage";
+
+// Lazy + ikut antrian (default)
+<LazyImage src={recipe.image_url} alt={recipe.name} className="w-full h-56 object-cover" />
+
+// Prioritas tinggi (melewati antrian, memuat segera)
+<LazyImage src={logoUrl} alt="Logo" eager className="w-12 h-12" />
+```
+
+Cara cek di DevTools Network (Chrome):
+
+1. Buka halaman daftar resep atau favorit yang banyak gambar.
+2. Buka DevTools (F12) → tab Network.
+3. Centang “Disable cache”.
+4. Reload halaman dan scroll perlahan.
+5. Lihat kolom Waterfall: permintaan gambar akan berjalan berurutan (satu selesai, berikutnya mulai). Gambar dengan `eager` akan muncul terlebih dahulu di awal.
+

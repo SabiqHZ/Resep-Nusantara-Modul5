@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useFavorites } from "../hooks/useFavorites";
 import { Clock, Star, ChefHat, Heart, Trash2 } from "lucide-react";
 import ConfirmModal from "../components/modals/ConfirmModal";
+import LazyImage from "../components/common/LazyImage";
 
 export default function FavoritePage({ onRecipeClick }) {
   const { favorites, loading, error, refetch } = useFavorites();
@@ -146,7 +147,7 @@ export default function FavoritePage({ onRecipeClick }) {
                   <div className="relative bg-white/15 backdrop-blur-xl border border-white/25 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg md:shadow-2xl shadow-pink-500/5 hover:shadow-pink-500/15 transition-all duration-500 group-hover:scale-105 group-hover:bg-white/20">
                     {/* Recipe Image */}
                     <div className="relative h-32 md:h-56 overflow-hidden">
-                      <img
+                      <LazyImage
                         src={recipe.image_url}
                         alt={recipe.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 cursor-pointer"

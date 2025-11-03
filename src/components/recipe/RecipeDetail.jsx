@@ -26,6 +26,7 @@ import recipeService from "../../services/recipeService";
 import ConfirmModal from "../modals/ConfirmModal";
 import FavoriteButton from "../common/FavoriteButton";
 import userService from "../../services/userService";
+import LazyImage from "../common/LazyImage";
 
 export default function RecipeDetail({
   recipeId,
@@ -234,8 +235,8 @@ export default function RecipeDetail({
         {/* Recipe Header */}
         <div className="bg-white/60 backdrop-blur-sm rounded-3xl overflow-hidden shadow-xl border border-white/40 mb-8">
           {/* Hero Image */}
-          <div className="relative h-64 md:h-96 overflow-hidden">
-            <img
+            <div className="relative h-64 md:h-96 overflow-hidden">
+            <LazyImage
               src={recipe.image_url}
               alt={recipe.name}
               className="w-full h-full object-cover"

@@ -6,7 +6,7 @@ export default function ProfilePage() {
         {/* Profile Image */}
         <div className="mb-6">
           <img
-            src="/saya.jpg"
+            src="/evel.jpg"
             alt="Profile"
             className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-lg border-4 border-gray-100"
           />
@@ -15,7 +15,7 @@ export default function ProfilePage() {
         {/* Profile Information */}
         <div className="text-center">
           <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">
-            Sabiq Habiburrahman Zarkasi
+            Jeremy Cavellino Sulistyo
           </h2>
           <p className="text-gray-600 text-lg">NIM: 21120123140058</p>
         </div>

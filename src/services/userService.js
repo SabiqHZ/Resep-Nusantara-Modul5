@@ -24,7 +24,7 @@ export const getUserProfile = () => {
 
     // Return default profile with user identifier
     return {
-      username: "Pengguna",
+      username: "Sri Mulyani",
       avatar: null,
       bio: "",
       userId: getUserIdentifier(),

@@ -4,6 +4,8 @@ import { useRecipe } from "../../hooks/useRecipes";
 import { useReviews, useCreateReview } from "../../hooks/useReviews";
 import { useIsFavorited } from "../../hooks/useFavorites";
 import { getUserIdentifier } from "../../hooks/useFavorites";
+import ShareButton from "../common/ShareButton";
+
 import {
   formatDate,
   getDifficultyColor,
@@ -240,8 +242,12 @@ export default function RecipeDetail({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-            {/* Favorite Button - Use component */}
-            <div className="absolute top-4 right-4 z-10">
+            <div className="absolute top-4 right-4 z-10 flex gap-2">
+              <ShareButton
+                recipeId={recipeId}
+                recipeName={recipe?.name}
+                size="lg"
+              />
               <FavoriteButton recipeId={recipeId} size="lg" />
             </div>
 

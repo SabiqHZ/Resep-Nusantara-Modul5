@@ -10,6 +10,7 @@ export default function MobileNavbar({
     { id: "home", label: "Beranda", icon: Home },
     { id: "makanan", label: "Makanan", icon: ChefHat },
     { id: "minuman", label: "Minuman", icon: Coffee },
+    { id: "favorit", label: "Favorit", icon: Coffee },
     { id: "profile", label: "Profile", icon: User },
   ];
 

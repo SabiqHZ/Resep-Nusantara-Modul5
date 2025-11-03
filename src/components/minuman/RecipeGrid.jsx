@@ -2,6 +2,7 @@
 import { Clock, Star, Coffee, ChefHat } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import FavoriteButton from "../common/FavoriteButton";
+import ShareButton from "../common/ShareButton";
 
 export default function RecipeGrid({ recipes, onRecipeClick }) {
   const [visibleCards, setVisibleCards] = useState(new Set());
@@ -70,8 +71,13 @@ export default function RecipeGrid({ recipes, onRecipeClick }) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
-                {/* Favorite Button */}
-                <div className="absolute top-3 right-3 z-10">
+                {/* Action Buttons */}
+                <div className="absolute top-3 right-3 z-10 flex gap-2">
+                  <ShareButton
+                    recipeId={recipe.id}
+                    recipeName={recipe.name}
+                    size="sm"
+                  />
                   <FavoriteButton recipeId={recipe.id} size="sm" />
                 </div>
               </div>

@@ -11,6 +11,7 @@ export default function DesktopNavbar({
     { id: "home", label: "Beranda" },
     { id: "makanan", label: "Makanan" },
     { id: "minuman", label: "Minuman" },
+    { id: "favorit", label: "Favorit" },
     { id: "profile", label: "Profile" },
   ];
 

@@ -5,6 +5,7 @@ import SplashScreen from "./pages/SplashScreen";
 import HomePage from "./pages/HomePage";
 import MakananPage from "./pages/MakananPage";
 import MinumanPage from "./pages/MinumanPage";
+import FavoritePage from "./pages/FavoritePage";
 import ProfilePage from "./pages/ProfilePage";
 import CreateRecipePage from "./pages/CreateRecipePage";
 import EditRecipePage from "./pages/EditRecipePage";
@@ -114,6 +115,8 @@ function AppRoot() {
         return <MakananPage onRecipeClick={handleRecipeClick} />;
       case "minuman":
         return <MinumanPage onRecipeClick={handleRecipeClick} />;
+      case "favorit":
+        return <FavoritePage onRecipeClick={handleRecipeClick} />;
       case "profile":
         return <ProfilePage onRecipeClick={handleRecipeClick} />;
       default:
